@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Latihan Pembelajaran JavaScript DOM & innerHTML</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      .section {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .toc {
+        background: #e8f4fd;
+        padding: 15px;
+        border-left: 5px solid #007acc;
+      }
+      .objectives {
+        background: #f0f8e8;
+        padding: 15px;
+        border-left: 5px solid #4caf50;
+      }
+      .example-box {
+        border: 2px solid #333;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        background: #fff;
+      }
+      .code-example {
+        background: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: "Courier New", monospace;
+        border-left: 4px solid #007acc;
+      }
+      .interactive-demo {
+        background: #fff3cd;
+        padding: 15px;
+        border-radius: 5px;
+        border-left: 4px solid #ffc107;
+      }
+      .section-number {
+        color: #007acc;
+        font-weight: bold;
+      }
+      button {
+        background: #007acc;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #005999;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f8f9fa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <h1>📚 Latihan Pembelajaran JavaScript: DOM & innerHTML</h1>
+
+      <div class="objectives">
+        <h3>🎯 Tujuan Pembelajaran:</h3>
+        <ul>
+          <li>Memahami konsep innerHTML dan cara kerjanya</li>
+          <li>Mengerti apa itu DOM (Document Object Model)</li>
+          <li>Belajar cara mengambil elemen dengan ID</li>
+          <li>Mengetahui perbedaan .value dan .innerHTML</li>
+          <li>Membuat kalkulator sederhana dengan JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="toc">
+        <h3>📋 Daftar Isi:</h3>
+        <ol>
+          <li><a href="#section1">Konsep DOM (Document Object Model)</a></li>
+          <li><a href="#section2">Mengambil Elemen dengan ID</a></li>
+          <li>
+            <a href="#section3">Method innerHTML - Mengubah Isi Elemen</a>
+          </li>
+          <li><a href="#section4">Perbedaan .value dan .innerHTML</a></li>
+          <li><a href="#section5">Praktik: Membuat Kalkulator</a></li>
+          <li><a href="#section6">Ringkasan dan Tips</a></li>
+        </ol>
+      </div>
+    </div>
+    <div class="section" id="section1">
+      <h2>
+        <span class="section-number">Bagian 1:</span> 🌐 Konsep DOM (Document
+        Object Model)
+      </h2>
+
+      <h3>📝 Apa itu DOM?</h3>
+      <p>
+        DOM adalah cara browser melihat dan mengorganisir halaman web. Bayangkan
+        DOM seperti <strong>pohon keluarga</strong> dari semua elemen HTML di
+        halaman web kita.
+      </p>
+
+      <h4>🎯 Penjelasan Sederhana DOM:</h4>
+      <ul>
+        <li>📝 <strong>Document:</strong> Seluruh halaman web</li>
+        <li>
+          🧩 <strong>Object:</strong> Setiap elemen HTML/tag HTML (seperti
+          button, input, div)
+        </li>
+        <li>
+          🌳 <strong>Model:</strong> Cara browser mengatur semua elemen tersebut
+          seperti pohon
+        </li>
+      </ul>
+
+      <h4>🔍 Mengapa DOM Penting?</h4>
+      <p>DOM memungkinkan JavaScript untuk:</p>
+      <ul>
+        <li>👁️ <strong>Melihat</strong> semua elemen HTML di halaman</li>
+        <li>🔄 <strong>Mengubah</strong> isi dan tampilan elemen</li>
+        <li>
+          📞 <strong>Merespons</strong> ketika user mengklik atau mengetik
+        </li>
+        <li>✨ <strong>Membuat</strong> halaman web yang interaktif!</li>
+      </ul>
+
+      <div class="interactive-demo">
+        <h4>🌍 Analogi DOM - Rumah dan Isinya:</h4>
+        <p>Bayangkan halaman web seperti rumah:</p>
+        <ul>
+          <li><strong>Document</strong> = Seluruh rumah</li>
+          <li>
+            <strong>Objects</strong> = Setiap ruangan (kamar, dapur, ruang tamu)
+          </li>
+          <li>
+            <strong>Model</strong> = Denah rumah yang menunjukkan di mana setiap
+            ruangan
+          </li>
+        </ul>
+        <p>JavaScript bisa "masuk" ke rumah dan mengubah isi setiap ruangan!</p>
+      </div>
+    </div>
+
+    <div class="section" id="section2">
+      <h2>
+        <span class="section-number">Bagian 2:</span> 🎯 Mengambil Elemen dengan
+        ID
+      </h2>
+
+      <h3>🔍 Cara JavaScript "Mencari" Elemen</h3>
+      <p>
+        Untuk bisa mengubah sesuatu, JavaScript harus dulu "menemukan" elemen
+        yang ingin diubah. Cara termudah adalah menggunakan <strong>ID</strong>.
+      </p>
+
+      <div class="code-example">
+        <strong>Syntax untuk mengambil elemen:</strong><br />
+        <code>document.getElementById("nama-id")</code>
+      </div>
+
+      <h4>🎮 Analogi - Mencari Teman dengan Nama:</h4>
+      <p>
+        ID seperti nama unik setiap orang. Ketika kamu panggil "Budi!", hanya
+        Budi yang merespons. Begitu juga dengan ID di HTML!
+      </p>
+
+      <div class="interactive-demo">
+        <h4>🧪 Latihan: Mengambil Elemen</h4>
+        <p>
+          Input nama:
+          <input type="text" id="namaUser" placeholder="Masukkan nama kamu" />
+        </p>
+        <button onclick="ambilNama()">Ambil Nama dari Input</button>
+        <p>Nama yang diambil: <span id="tampilNama">-</span></p>
+
+        <div class="code-example" style="margin-top: 15px">
+          <strong>Kode yang bekerja di belakang layar:</strong><br />
+          <code>
+            // Langkah 1: Cari elemen input dengan id "namaUser"<br />
+            let inputElement = document.getElementById("namaUser");<br />
+            <br />
+            // Langkah 2: Ambil nilai yang diketik user<br />
+            let nama = inputElement.value;<br />
+            <br />
+            // Langkah 3: Tampilkan di elemen dengan id "tampilNama"<br />
+            document.getElementById("tampilNama").innerHTML = nama;
+          </code>
+        </div>
+      </div>
+
+      <h3>📊 Mengambil Nilai Input dengan .value</h3>
+      <p>
+        Untuk elemen input, kita gunakan <code>.value</code> untuk mengambil apa
+        yang diketik user.
+      </p>
+
+      <div class="code-example">
+        <code>let nilaiInput = document.getElementById("nama-id").value;</code>
+      </div>
+
+      <div class="interactive-demo">
+        <h4>🧪 Latihan: Mengumpulkan Data</h4>
+        <p>
+          Umur:
+          <input type="number" id="umurUser" placeholder="Masukkan umur" />
+        </p>
+        <p>
+          Kota: <input type="text" id="kotaUser" placeholder="Masukkan kota" />
+        </p>
+        <button onclick="tampilkanData()">Kumpulkan Semua Data</button>
+        <div id="hasilData" class="example-box" style="min-height: 60px"></div>
+      </div>
+    </div>
+
+    <div class="section" id="section3">
+      <h2>
+        <span class="section-number">Bagian 3:</span> 🏷️ Method innerHTML -
+        Mengubah Isi Elemen
+      </h2>
+
+      <h3>📝 Apa itu innerHTML?</h3>
+      <p>
+        Sekarang setelah kita tahu cara "menemukan" elemen dengan DOM, kita
+        belajar cara <strong>mengubah isinya</strong>. innerHTML adalah
+        <strong>method DOM</strong> untuk mengubah atau mengambil isi dari
+        elemen HTML.
+      </p>
+
+      <h4>🎯 Penjelasan Sederhana:</h4>
+      <p>Bayangkan innerHTML seperti <strong>kotak ajaib</strong> yang bisa:</p>
+      <ul>
+        <li>
+          📖 <strong>Membaca</strong> apa yang ada di dalam kotak (elemen HTML)
+        </li>
+        <li>✏️ <strong>Menulis</strong> atau mengubah isi kotak tersebut</li>
+        <li>
+          🧹 <strong>Menghapus</strong> isi kotak dan menggantinya dengan yang
+          baru
+        </li>
+      </ul>
+
+      <h4>📚 Cara Menggunakan innerHTML:</h4>
+
+      <div class="code-example">
+        <strong>1. Mengambil isi elemen:</strong><br />
+        <code>let isi = document.getElementById("namaId").innerHTML;</code>
+      </div>
+
+      <div class="code-example">
+        <strong>2. Mengubah isi elemen:</strong><br />
+        <code>document.getElementById("namaId").innerHTML = "Isi baru";</code>
+      </div>
+
+      <div class="interactive-demo">
+        <h4>🧪 Latihan Praktis innerHTML:</h4>
+        <p>Klik tombol untuk melihat innerHTML bekerja:</p>
+
+        <div id="kotakAjaib" class="example-box">Ini adalah isi asli kotak</div>
+
+        <button onclick="ubahIsi()">Ubah Isi Kotak</button>
+        <button onclick="tambahIsi()">Tambah Isi</button>
+        <button onclick="hapusIsi()">Hapus Isi</button>
+        <button onclick="kembalikanIsi()">Kembalikan Isi Asli</button>
+
+        <div class="code-example" style="margin-top: 15px">
+          <strong>Contoh kode untuk tombol "Ubah Isi":</strong><br />
+          <code
+            >document.getElementById("kotakAjaib").innerHTML =
+            "&lt;strong&gt;Isi sudah diubah!&lt;/strong&gt;";</code
+          >
+        </div>
+      </div>
+
+      <div class="interactive-demo">
+        <h4>🎨 innerHTML dengan HTML Tags:</h4>
+        <p>Kekuatan innerHTML: bisa menambahkan elemen HTML lengkap!</p>
+
+        <div id="kotakHTML" class="example-box" style="min-height: 80px">
+          Isi akan muncul di sini...
+        </div>
+
+        <button onclick="buatDaftar()">Buat Daftar</button>
+        <button onclick="buatTabel()">Buat Tabel</button>
+        <button onclick="buatGambar()">Tambah Emoji</button>
+
+        <div class="code-example" style="margin-top: 15px">
+          <strong>Contoh: innerHTML dengan HTML tags</strong><br />
+          <code>
+            let daftar = "&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item
+            2&lt;/li&gt;&lt;/ul&gt;";<br />
+            document.getElementById("kotakHTML").innerHTML = daftar;
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="section4">
+      <h2>
+        <span class="section-number">Bagian 4:</span> ⚖️ Perbedaan .value dan
+        .innerHTML
+      </h2>
+
+      <h3>🤔 Kapan Gunakan .value vs .innerHTML?</h3>
+      <p>
+        Sekarang kita sudah tahu cara mencari elemen dan mengubah isinya. Tapi
+        kapan pakai <code>.value</code> dan kapan pakai <code>.innerHTML</code>?
+      </p>
+
+      <table>
+        <tr>
+          <th>Gunakan .value</th>
+          <th>Gunakan .innerHTML</th>
+        </tr>
+        <tr>
+          <td>
+            • Input text<br />• Input number<br />• Textarea<br />• Select
+            dropdown
+          </td>
+          <td>
+            • Div<br />• Span<br />• Paragraph (p)<br />• Heading (h1, h2, dll)
+          </td>
+        </tr>
+      </table>
+
+      <div class="objectives">
+        <h4>🚨 Perbedaan Penting:</h4>
+        <ul>
+          <li>
+            <strong>.value:</strong> Untuk elemen yang bisa diketik user (input)
+          </li>
+          <li>
+            <strong>.innerHTML:</strong> Untuk elemen yang menampilkan konten
+          </li>
+          <li>
+            <strong>innerHTML bisa menambahkan HTML tags</strong> seperti
+            &lt;b&gt;, &lt;i&gt;, &lt;br&gt;
+          </li>
+          <li>
+            <strong>.value hanya berisi text biasa</strong> (tidak bisa HTML
+            tags)
+          </li>
+        </ul>
+      </div>
+
+      <div class="interactive-demo">
+        <h4>🧪 Latihan: Bandingkan .value vs .innerHTML</h4>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+          <div>
+            <h5>Test .value (untuk input):</h5>
+            <input
+              type="text"
+              id="testInput"
+              placeholder="Ketik sesuatu"
+              style="width: 100%; padding: 8px"
+            />
+            <button onclick="ambilValue()" style="width: 100%; margin-top: 5px">
+              Ambil dengan .value
+            </button>
+            <div id="hasilValue" class="example-box">
+              Hasil akan muncul di sini
+            </div>
+          </div>
+
+          <div>
+            <h5>Test .innerHTML (untuk div):</h5>
+            <div
+              id="testDiv"
+              class="example-box"
+              style="min-height: 40px; cursor: pointer"
+              onclick="ubahInnerHTML()"
+            >
+              Klik saya untuk ubah dengan innerHTML
+            </div>
+            <button onclick="resetDiv()" style="width: 100%; margin-top: 5px">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="code-example" style="margin-top: 15px">
+          <strong>Kode untuk demo di atas:</strong><br />
+          <code>
+            // Untuk .value:<br />
+            let text = document.getElementById("testInput").value;<br />
+            document.getElementById("hasilValue").innerHTML = text;<br />
+            <br />
+            // Untuk .innerHTML:<br />
+            document.getElementById("testDiv").innerHTML = "&lt;strong&gt;Diubah
+            dengan innerHTML!&lt;/strong&gt;";
+          </code>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section5">
+      <h2>
+        <span class="section-number">Bagian 5:</span> 🧮 Praktik: Membuat
+        Kalkulator Sederhana
+      </h2>
+
+      <div class="objectives">
+        <p>
+          🎧
+          <strong>Sekarang kita terapkan semua yang sudah dipelajari:</strong>
+        </p>
+        <ul>
+          <li>✓ DOM untuk mencari elemen input dan output</li>
+          <li>✓ .value untuk mengambil angka dari input</li>
+          <li>✓ .innerHTML untuk menampilkan hasil</li>
+        </ul>
+      </div>
+
+      <div class="interactive-demo">
+        <h3>💻 Kalkulator Interaktif</h3>
+
+        <div
+          style="
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+          "
+        >
+          <input
+            type="number"
+            id="angka1"
+            placeholder="Angka pertama"
+            style="
+              padding: 10px;
+              margin: 5px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            "
+          />
+          <input
+            type="number"
+            id="angka2"
+            placeholder="Angka kedua"
+            style="
+              padding: 10px;
+              margin: 5px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            "
+          />
+
+          <br /><br />
+
+          <button
+            onclick="tambah()"
+            style="padding: 15px 25px; margin: 5px; font-size: 18px"
+          >
+            +
+          </button>
+          <button
+            onclick="kurang()"
+            style="padding: 15px 25px; margin: 5px; font-size: 18px"
+          >
+            −
+          </button>
+          <button
+            onclick="kali()"
+            style="padding: 15px 25px; margin: 5px; font-size: 18px"
+          >
+            ×
+          </button>
+          <button
+            onclick="bagi()"
+            style="padding: 15px 25px; margin: 5px; font-size: 18px"
+          >
+            ÷
+          </button>
+
+          <br /><br />
+
+          <h2 style="color: #007acc">Hasil: <span id="hasil">0</span></h2>
+        </div>
+      </div>
+
+      <h3>🔍 Penjelasan Kode Kalkulator:</h3>
+
+      <div class="code-example">
+        <h4>Langkah 1: Mengambil nilai input</h4>
+        <code>
+          let a = Number(document.getElementById("angka1").value);<br />
+          let b = Number(document.getElementById("angka2").value);
+        </code>
+        <p>
+          <strong>Penjelasan:</strong> Kita ambil nilai dari kedua input dan
+          ubah menjadi angka dengan Number()
+        </p>
+      </div>
+
+      <div class="code-example">
+        <h4>Langkah 2: Melakukan operasi matematika</h4>
+        <code>let hasil = a + b; // untuk penjumlahan</code>
+        <p>
+          <strong>Penjelasan:</strong> Kita lakukan operasi sesuai tombol yang
+          ditekan (+, -, ×, ÷)
+        </p>
+      </div>
+
+      <div class="code-example">
+        <h4>Langkah 3: Menampilkan hasil</h4>
+        <code>document.getElementById("hasil").innerHTML = hasil;</code>
+        <p>
+          <strong>Penjelasan:</strong> Kita tampilkan hasil ke elemen dengan id
+          "hasil" menggunakan innerHTML
+        </p>
+      </div>
+    </div>
+
+    <div class="section" id="section6">
+      <h2>
+        <span class="section-number">Bagian 5:</span> 📝 Ringkasan & Tips
+        Penting
+      </h2>
+
+      <div class="objectives">
+        <h3>🎆 Selamat! Kamu sudah belajar:</h3>
+        <ul>
+          <li>✓ Apa itu innerHTML dan cara menggunakannya</li>
+          <li>✓ Konsep DOM dan cara mengambil elemen dengan ID</li>
+          <li>✓ Perbedaan antara .value dan .innerHTML</li>
+          <li>✓ Cara membuat kalkulator sederhana dengan JavaScript</li>
+        </ul>
+      </div>
+
+      <h3>💡 Tips Penting yang Harus Diingat:</h3>
+      <ul>
+        <li>
+          <strong>ID Unik:</strong> Setiap elemen harus punya ID yang berbeda
+        </li>
+        <li>
+          <strong>.value untuk Input:</strong> Gunakan untuk input, textarea,
+          select
+        </li>
+        <li>
+          <strong>.innerHTML untuk Tampilan:</strong> Gunakan untuk div, span,
+          h1, p, dll
+        </li>
+        <li>
+          <strong>Number():</strong> Gunakan untuk mengubah text menjadi angka
+        </li>
+        <li>
+          <strong>Debugging:</strong> Gunakan console.log() untuk melihat nilai
+          variabel
+        </li>
+      </ul>
+
+      <div class="interactive-demo">
+        <h3>🌈 Tantangan Bonus:</h3>
+        <p>Coba modifikasi kalkulator dengan menambahkan:</p>
+        <ul>
+          <li>Tombol Clear (hapus hasil)</li>
+          <li>Operasi pangkat (x²)</li>
+          <li>Validasi input kosong</li>
+          <li>Tampilan yang lebih menarik</li>
+        </ul>
+      </div>
+
+      <div class="toc">
+        <h3>📚 Konsep Kunci JavaScript DOM:</h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+          "
+        >
+          <div>
+            <h4>Mengambil Elemen:</h4>
+            <code>document.getElementById("id")</code>
+          </div>
+          <div>
+            <h4>Mengubah Konten:</h4>
+            <code>element.innerHTML = "konten"</code>
+          </div>
+          <div>
+            <h4>Mengambil Input:</h4>
+            <code>input.value</code>
+          </div>
+          <div>
+            <h4>Konversi Angka:</h4>
+            <code>Number(text)</code>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          margin-top: 30px;
+          padding: 20px;
+          background: #e8f5e8;
+          border-radius: 10px;
+        "
+      >
+        <h2>🎉 Semangat dan terus Belajar!</h2>
+        <p>Sekarang kamu sudah bisa menambah ilmu baru hari ini!</p>
+      </div>
+    </div>
+
+    <script>
+      function tambah() {
+        let a = Number(document.getElementById("angka1").value);
+        let b = Number(document.getElementById("angka2").value);
+        document.getElementById("hasil").innerHTML = a + b;
+      }
+
+      function kurang() {
+        let a = Number(document.getElementById("angka1").value);
+        let b = Number(document.getElementById("angka2").value);
+        document.getElementById("hasil").innerHTML = a - b;
+      }
+
+      function kali() {
+        let a = Number(document.getElementById("angka1").value);
+        let b = Number(document.getElementById("angka2").value);
+        document.getElementById("hasil").innerHTML = a * b;
+      }
+
+      function bagi() {
+        let a = Number(document.getElementById("angka1").value);
+        let b = Number(document.getElementById("angka2").value);
+        if (b !== 0) {
+          document.getElementById("hasil").innerHTML = a / b;
+        } else {
+          document.getElementById("hasil").innerHTML = "Error!";
+        }
+      }
+
+      // Fungsi untuk contoh DOM - mengambil nama
+      function ambilNama() {
+        // Mengambil elemen input dengan id "namaUser"
+        let inputNama = document.getElementById("namaUser");
+        // Mengambil nilai dari input tersebut
+        let nama = inputNama.value;
+        // Menampilkan hasil di elemen dengan id "tampilNama"
+        document.getElementById("tampilNama").innerHTML = nama;
+      }
+
+      // Fungsi untuk contoh DOM - menampilkan data lengkap
+      function tampilkanData() {
+        // Mengambil nilai dari berbagai input
+        let nama = document.getElementById("namaUser").value;
+        let umur = document.getElementById("umurUser").value;
+        let kota = document.getElementById("kotaUser").value;
+
+        // Membuat text hasil
+        let hasil = "<h4>Data yang diambil:</h4>";
+        hasil += "<p>Nama: " + nama + "</p>";
+        hasil += "<p>Umur: " + umur + " tahun</p>";
+        hasil += "<p>Kota: " + kota + "</p>";
+
+        // Menampilkan hasil
+        document.getElementById("hasilData").innerHTML = hasil;
+      }
+
+      // Fungsi-fungsi untuk contoh .value vs .innerHTML
+      function ambilValue() {
+        let text = document.getElementById("testInput").value;
+        if (text.trim() === "") {
+          document.getElementById("hasilValue").innerHTML =
+            "<em>Input masih kosong!</em>";
+        } else {
+          document.getElementById("hasilValue").innerHTML =
+            "Nilai yang diambil: <strong>" + text + "</strong>";
+        }
+      }
+
+      function ubahInnerHTML() {
+        document.getElementById("testDiv").innerHTML =
+          "<strong style='color: green;'>✨ Diubah dengan innerHTML!</strong> <br><em>Bisa pakai HTML tags!</em>";
+      }
+
+      function resetDiv() {
+        document.getElementById("testDiv").innerHTML =
+          "Klik saya untuk ubah dengan innerHTML";
+      }
+
+      // Fungsi-fungsi untuk contoh innerHTML
+      function ubahIsi() {
+        document.getElementById("kotakAjaib").innerHTML =
+          "<strong>Isi sudah diubah!</strong> 🎉";
+      }
+
+      function tambahIsi() {
+        let isiSekarang = document.getElementById("kotakAjaib").innerHTML;
+        document.getElementById("kotakAjaib").innerHTML =
+          isiSekarang + " <em>+ Isi tambahan</em> ✨";
+      }
+
+      function hapusIsi() {
+        document.getElementById("kotakAjaib").innerHTML = "";
+      }
+
+      function kembalikanIsi() {
+        document.getElementById("kotakAjaib").innerHTML =
+          "Ini adalah isi asli kotak";
+      }
+
+      function buatDaftar() {
+        let daftar = "<h4>📋 Daftar Buah Favorit:</h4>";
+        daftar += "<ul>";
+        daftar += "<li>🍎 Apel</li>";
+        daftar += "<li>🍌 Pisang</li>";
+        daftar += "<li>🍇 Anggur</li>";
+        daftar += "</ul>";
+        document.getElementById("kotakHTML").innerHTML = daftar;
+      }
+
+      function buatTabel() {
+        let tabel = "<h4>📅 Jadwal Belajar:</h4>";
+        tabel += "<table border='1' style='border-collapse: collapse;'>";
+        tabel += "<tr><th>Hari</th><th>Mata Pelajaran</th></tr>";
+        tabel += "<tr><td>Senin</td><td>Matematika</td></tr>";
+        tabel += "<tr><td>Selasa</td><td>JavaScript</td></tr>";
+        tabel += "</table>";
+        document.getElementById("kotakHTML").innerHTML = tabel;
+      }
+
+      function buatGambar() {
+        let konten = "<h4>🌈 Emoji Lucu:</h4>";
+        konten += "<p style='font-size: 30px;'>";
+        konten += "😊 😎 🤩 💪 🎆";
+        konten += "</p>";
+        konten += "<p><em>Dibuat dengan innerHTML!</em></p>";
+        document.getElementById("kotakHTML").innerHTML = konten;
+      }
+    </script>
+  </body>
+</html>
