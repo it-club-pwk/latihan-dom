@@ -374,7 +374,7 @@
               type="text"
               id="testInput"
               placeholder="Ketik sesuatu"
-              style="width: 100%; padding: 8px"
+              style="width: 97%; padding: 8px"
             />
             <button onclick="ambilValue()" style="width: 100%; margin-top: 5px">
               Ambil dengan .value
@@ -501,34 +501,191 @@
 
       <h3>🔍 Penjelasan Kode Kalkulator:</h3>
 
-      <div class="code-example">
-        <h4>Langkah 1: Mengambil nilai input</h4>
-        <code>
-          let a = Number(document.getElementById("angka1").value);<br />
-          let b = Number(document.getElementById("angka2").value);
-        </code>
-        <p>
-          <strong>Penjelasan:</strong> Kita ambil nilai dari kedua input dan
-          ubah menjadi angka dengan Number()
-        </p>
+      <div class="objectives">
+        <h4>🎯 Apa yang terjadi ketika kamu klik tombol "+"?</h4>
+        <p>Mari kita bongkar kode langkah demi langkah!</p>
       </div>
 
       <div class="code-example">
-        <h4>Langkah 2: Melakukan operasi matematika</h4>
+        <h4>🏗️ Langkah 1: Mengambil nilai dari input pertama</h4>
+        <code>let a = Number(document.getElementById("angka1").value);</code>
+
+        <p><strong>Penjelasan detail:</strong></p>
+        <ul>
+          <li>
+            📍 <code>document.getElementById("angka1")</code> = Cari elemen
+            dengan id "angka1"
+          </li>
+          <li>
+            📝 <code>.value</code> = Ambil apa yang diketik user di input
+            tersebut
+          </li>
+          <li>
+            🔢 <code>Number(...)</code> = Ubah text menjadi angka (karena input
+            selalu memberikan text)
+          </li>
+          <li>
+            📦 <code>let a =</code> = Simpan hasilnya di variabel bernama "a"
+          </li>
+        </ul>
+      </div>
+
+      <div class="code-example">
+        <h4>🏗️ Langkah 2: Mengambil nilai dari input kedua</h4>
+        <code>let b = Number(document.getElementById("angka2").value);</code>
+
+        <p><strong>Penjelasan:</strong></p>
+        <ul>
+          <li>🔄 Sama seperti langkah 1, tapi untuk input kedua</li>
+          <li>📦 Hasilnya disimpan di variabel "b"</li>
+        </ul>
+      </div>
+
+      <div class="code-example">
+        <h4>🏗️ Langkah 3: Melakukan operasi matematika</h4>
         <code>let hasil = a + b; // untuk penjumlahan</code>
-        <p>
-          <strong>Penjelasan:</strong> Kita lakukan operasi sesuai tombol yang
-          ditekan (+, -, ×, ÷)
-        </p>
+
+        <p><strong>Penjelasan:</strong></p>
+        <ul>
+          <li>➕ <code>a + b</code> = Jumlahkan kedua angka</li>
+          <li>
+            📊 Untuk operasi lain: <code>a - b</code> (kurang),
+            <code>a * b</code> (kali), <code>a / b</code> (bagi)
+          </li>
+          <li>💾 Hasil disimpan di variabel "hasil"</li>
+        </ul>
       </div>
 
       <div class="code-example">
-        <h4>Langkah 3: Menampilkan hasil</h4>
+        <h4>🏗️ Langkah 4: Menampilkan hasil ke layar</h4>
         <code>document.getElementById("hasil").innerHTML = hasil;</code>
-        <p>
-          <strong>Penjelasan:</strong> Kita tampilkan hasil ke elemen dengan id
-          "hasil" menggunakan innerHTML
-        </p>
+
+        <p><strong>Penjelasan:</strong></p>
+        <ul>
+          <li>
+            🎯 <code>document.getElementById("hasil")</code> = Cari elemen
+            dengan id "hasil"
+          </li>
+          <li>✏️ <code>.innerHTML =</code> = Ubah isi elemen tersebut</li>
+          <li>📤 <code>hasil</code> = Dengan nilai yang sudah dihitung</li>
+        </ul>
+      </div>
+
+      <div class="interactive-demo">
+        <h4>🎭 Simulasi Langkah-demi-Langkah:</h4>
+        <p>Masukkan angka dan lihat setiap langkah yang terjadi:</p>
+
+        <input
+          type="number"
+          id="demo1"
+          placeholder="Angka 1"
+          style="margin: 5px; padding: 8px"
+        />
+        <input
+          type="number"
+          id="demo2"
+          placeholder="Angka 2"
+          style="margin: 5px; padding: 8px"
+        />
+        <button onclick="simulasiLangkah()" style="margin: 5px">
+          🔍 Lihat Langkah-demi-Langkah
+        </button>
+
+        <div
+          id="simulasiHasil"
+          style="
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+          "
+        ></div>
+      </div>
+
+      <div class="objectives">
+        <h4>🧠 Konsep Penting yang Dipelajari:</h4>
+        <ol>
+          <li>
+            <strong>DOM Selection:</strong>
+            <code>document.getElementById()</code> untuk mencari elemen
+          </li>
+          <li>
+            <strong>Input Handling:</strong> <code>.value</code> untuk mengambil
+            data dari user
+          </li>
+          <li>
+            <strong>Type Conversion:</strong> <code>Number()</code> untuk
+            mengubah text jadi angka
+          </li>
+          <li>
+            <strong>Variables:</strong> <code>let</code> untuk menyimpan data
+            sementara
+          </li>
+          <li>
+            <strong>Output Display:</strong> <code>.innerHTML</code> untuk
+            menampilkan hasil
+          </li>
+          <li>
+            <strong>Functions:</strong> Cara mengorganisir kode dalam fungsi
+          </li>
+        </ol>
+      </div>
+
+      <div class="code-example">
+        <h4>📋 Kode Lengkap Fungsi Penjumlahan:</h4>
+        <code>
+          function tambah() {<br />
+          &nbsp;&nbsp;// Langkah 1: Ambil nilai input pertama<br />
+          &nbsp;&nbsp;let a =
+          Number(document.getElementById("angka1").value);<br />
+          <br />
+          &nbsp;&nbsp;// Langkah 2: Ambil nilai input kedua<br />
+          &nbsp;&nbsp;let b =
+          Number(document.getElementById("angka2").value);<br />
+          <br />
+          &nbsp;&nbsp;// Langkah 3: Hitung penjumlahan<br />
+          &nbsp;&nbsp;let hasil = a + b;<br />
+          <br />
+          &nbsp;&nbsp;// Langkah 4: Tampilkan hasil<br />
+          &nbsp;&nbsp;document.getElementById("hasil").innerHTML = hasil;<br />
+          }
+        </code>
+      </div>
+
+      <div class="interactive-demo">
+        <h4>🚨 Penanganan Error pada Pembagian:</h4>
+        <p>Lihat bagaimana kode menangani pembagian dengan nol:</p>
+
+        <div class="code-example">
+          <code>
+            function bagi() {<br />
+            &nbsp;&nbsp;let a =
+            Number(document.getElementById("angka1").value);<br />
+            &nbsp;&nbsp;let b =
+            Number(document.getElementById("angka2").value);<br />
+            <br />
+            &nbsp;&nbsp;// Cek apakah pembagi adalah nol<br />
+            &nbsp;&nbsp;if (b !== 0) {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("hasil").innerHTML =
+            a / b;<br />
+            &nbsp;&nbsp;} else {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("hasil").innerHTML =
+            "Error!";<br />
+            &nbsp;&nbsp;}<br />
+            }
+          </code>
+        </div>
+
+        <p><strong>Mengapa perlu pengecekan?</strong></p>
+        <ul>
+          <li>
+            🚫 Membagi dengan nol = operasi yang tidak bisa dilakukan dalam
+            matematika
+          </li>
+          <li>🛡️ Kode kita harus "pintar" menangani situasi ini</li>
+          <li>👤 Memberikan pesan yang jelas kepada user</li>
+        </ul>
       </div>
     </div>
 
@@ -750,6 +907,46 @@
         konten += "</p>";
         konten += "<p><em>Dibuat dengan innerHTML!</em></p>";
         document.getElementById("kotakHTML").innerHTML = konten;
+      }
+
+      // Fungsi untuk simulasi langkah-demi-langkah kalkulator
+      function simulasiLangkah() {
+        let simulasiDiv = document.getElementById("simulasiHasil");
+
+        // Ambil nilai input
+        let input1 = document.getElementById("demo1").value;
+        let input2 = document.getElementById("demo2").value;
+
+        // Validasi input
+        if (input1 === "" || input2 === "") {
+          simulasiDiv.innerHTML =
+            "<span style='color: red;'>⚠️ Mohon isi kedua input terlebih dahulu!</span>";
+          return;
+        }
+
+        let hasil = "";
+        hasil += "🔍 SIMULASI LANGKAH-DEMI-LANGKAH PENJUMLAHAN:\n\n";
+
+        hasil += "📥 Langkah 1: Mengambil nilai input\n";
+        hasil += `   document.getElementById("demo1").value = "${input1}"\n`;
+        hasil += `   document.getElementById("demo2").value = "${input2}"\n\n`;
+
+        hasil += "🔢 Langkah 2: Konversi ke angka\n";
+        hasil += `   let a = Number("${input1}") = ${Number(input1)}\n`;
+        hasil += `   let b = Number("${input2}") = ${Number(input2)}\n\n`;
+
+        hasil += "➕ Langkah 3: Melakukan penjumlahan\n";
+        let hasilHitung = Number(input1) + Number(input2);
+        hasil += `   let hasil = ${Number(input1)} + ${Number(
+          input2
+        )} = ${hasilHitung}\n\n`;
+
+        hasil += "📺 Langkah 4: Menampilkan hasil\n";
+        hasil += `   document.getElementById("hasil").innerHTML = ${hasilHitung}\n\n`;
+
+        hasil += `✅ HASIL AKHIR: ${hasilHitung}`;
+
+        simulasiDiv.innerHTML = `<pre style="white-space: pre-line; font-size: 12px; line-height: 1.4;">${hasil}</pre>`;
       }
     </script>
   </body>
